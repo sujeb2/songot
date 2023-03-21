@@ -33,9 +33,9 @@ public class CrashReportSystemDetails {
         StringBuilder stringbuilder = new StringBuilder();
 
         try {
-            stringbuilder.append(String.format(Locale.ROOT, "World: (%d,%d,%d)", i, j, k));
+            stringbuilder.append(String.format(Locale.ROOT, "월드: (%d,%d,%d)", i, j, k));
         } catch (Throwable throwable) {
-            stringbuilder.append("(Error finding world loc)");
+            stringbuilder.append("(월드 위치를 찾는데 오류가 발생함)");
         }
 
         stringbuilder.append(", ");
@@ -66,9 +66,9 @@ public class CrashReportSystemDetails {
             i3 = SectionPosition.sectionToBlockCoord(l + 1) - 1;
             j3 = levelheightaccessor.getMaxBuildHeight() - 1;
             k3 = SectionPosition.sectionToBlockCoord(j1 + 1) - 1;
-            stringbuilder.append(String.format(Locale.ROOT, "Section: (at %d,%d,%d in %d,%d,%d; chunk contains blocks %d,%d,%d to %d,%d,%d)", k1, l1, i2, l, i1, j1, j2, k2, l2, i3, j3, k3));
+            stringbuilder.append(String.format(Locale.ROOT, "섹션: (at %d,%d,%d in %d,%d,%d; chunk contains blocks %d,%d,%d to %d,%d,%d)", k1, l1, i2, l, i1, j1, j2, k2, l2, i3, j3, k3));
         } catch (Throwable throwable1) {
-            stringbuilder.append("(Error finding chunk loc)");
+            stringbuilder.append("(청크 위치를 찾는데 오류가 발생함)");
         }
 
         stringbuilder.append(", ");
@@ -86,9 +86,9 @@ public class CrashReportSystemDetails {
             i3 = (l + 1 << 9) - 1;
             j3 = levelheightaccessor.getMaxBuildHeight() - 1;
             k3 = (i1 + 1 << 9) - 1;
-            stringbuilder.append(String.format(Locale.ROOT, "Region: (%d,%d; contains chunks %d,%d to %d,%d, blocks %d,%d,%d to %d,%d,%d)", l, i1, j1, k1, l1, i2, j2, k2, l2, i3, j3, k3));
+            stringbuilder.append(String.format(Locale.ROOT, "지역: (%d,%d; 는 %d,%d,%d,%d 청크를 포함함, 블럭은 %d,%d,%d,%d,%d,%d를 포함함)", l, i1, j1, k1, l1, i2, j2, k2, l2, i3, j3, k3));
         } catch (Throwable throwable2) {
-            stringbuilder.append("(Error finding world loc)");
+            stringbuilder.append("(월드 위치를 찾는데 오류가 발생함)");
         }
 
         return stringbuilder.toString();
@@ -189,10 +189,10 @@ public class CrashReportSystemDetails {
     public static void populateBlockDetails(CrashReportSystemDetails crashreportsystemdetails, LevelHeightAccessor levelheightaccessor, BlockPosition blockposition, @Nullable IBlockData iblockdata) {
         if (iblockdata != null) {
             Objects.requireNonNull(iblockdata);
-            crashreportsystemdetails.setDetail("Block", iblockdata::toString);
+            crashreportsystemdetails.setDetail("블럭", iblockdata::toString);
         }
 
-        crashreportsystemdetails.setDetail("Block location", () -> {
+        crashreportsystemdetails.setDetail("블럭 위치", () -> {
             return formatLocation(levelheightaccessor, blockposition);
         });
     }

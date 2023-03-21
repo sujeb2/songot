@@ -120,18 +120,18 @@ public class CrashReport {
     public String getFriendlyReport() {
         StringBuilder stringbuilder = new StringBuilder();
 
-        stringbuilder.append("---- Minecraft Crash Report ----\n");
+        stringbuilder.append("---- 서버 크래쉬 보고서 ----\n");
         stringbuilder.append("// ");
         stringbuilder.append(getErrorComment());
         stringbuilder.append("\n\n");
-        stringbuilder.append("Time: ");
+        stringbuilder.append("시간: ");
         stringbuilder.append(CrashReport.DATE_TIME_FORMATTER.format(ZonedDateTime.now()));
         stringbuilder.append("\n");
-        stringbuilder.append("Description: ");
+        stringbuilder.append("설명: ");
         stringbuilder.append(this.title);
         stringbuilder.append("\n\n");
         stringbuilder.append(this.getExceptionMessage());
-        stringbuilder.append("\n\nA detailed walkthrough of the error, its code path and all known details is as follows:\n");
+        stringbuilder.append("\n\n이 오류와, 코드 위치 그리고, 모든 자세한 정보는 아래에 따릅니다.\n");
 
         for (int i = 0; i < 87; ++i) {
             stringbuilder.append("-");
@@ -166,7 +166,7 @@ public class CrashReport {
 
                 return flag1;
             } catch (Throwable throwable) {
-                CrashReport.LOGGER.error("Could not save crash report to {}", file, throwable);
+                CrashReport.LOGGER.error("{}에 저장하는데 오류가 발생함.", file, throwable);
                 flag = false;
             } finally {
                 IOUtils.closeQuietly(outputstreamwriter);
@@ -219,12 +219,12 @@ public class CrashReport {
     }
 
     private static String getErrorComment() {
-        String[] astring = new String[]{"Who set us up the TNT?", "Everything's going to plan. No, really, that was supposed to happen.", "Uh... Did I do that?", "Oops.", "Why did you do that?", "I feel sad now :(", "My bad.", "I'm sorry, Dave.", "I let you down. Sorry :(", "On the bright side, I bought you a teddy bear!", "Daisy, daisy...", "Oh - I know what I did wrong!", "Hey, that tickles! Hehehe!", "I blame Dinnerbone.", "You should try our sister game, Minceraft!", "Don't be sad. I'll do better next time, I promise!", "Don't be sad, have a hug! <3", "I just don't know what went wrong :(", "Shall we play a game?", "Quite honestly, I wouldn't worry myself about that.", "I bet Cylons wouldn't have this problem.", "Sorry :(", "Surprise! Haha. Well, this is awkward.", "Would you like a cupcake?", "Hi. I'm Minecraft, and I'm a crashaholic.", "Ooh. Shiny.", "This doesn't make any sense!", "Why is it breaking :(", "Don't do that.", "Ouch. That hurt :(", "You're mean.", "This is a token for 1 free hug. Redeem at your nearest Mojangsta: [~~HUG~~]", "There are four lights!", "But it works on my machine."};
+        String[] astring = new String[]{"누가 TNT를 설치했어?", "모든것이 계획대로 가고있어, 어... 그건 원래 계획에 있었어", "어.... 내가 했나?", "이런.", "내가 왜 이런짓을 했지?", "슬퍼 :(", "내 잘못이야.", "미안해 데이브", "널 슬프게 했어, 미안해 :(", "다른면은, 내가 곰돌이를 가져왔어!", "데이지... 데이지...", "아! 뭘 잘못했는지 알겠어!", "간지러워, 히히", "Dinnerbone 탓이야", "우리 누나가만든 게임 Minecraft를 플레이해봐!", "슬프지마, 내가 정말로 나중에 더 잘할께!", "슬프지마, 내가 안아줄께", "뭐가 잘못됐는지 모르겠어...", "게임을 플레이할래?", "솔직히 말해사, 난 그걸 걱정하지 않을꺼야.", "Cylons는 이 문제가 없다는거에 걸지", "미안해 :(", "서프라이즈! 어... 이건 어색하네", "컵케이크를 원하니?", "안녕, 난 Minecraft이고 난 crashaholic이야.", "오... 반짝거리는데...", "이건 아무런 연관이 되지 않아!", "왜 고장나는거지 :(", "하지마.", "아야, 아프네", "너는 나빴어.", "이건 한번 무료로 안을수 있는 토큰이야, 가까운 Mojansta에서 받으세요: [~~HUG~~]", "4개의 빛이 있어!", "하지만, 내 컴퓨터에서는 작동했는데?"};
 
         try {
             return astring[(int) (SystemUtils.getNanos() % (long) astring.length)];
         } catch (Throwable throwable) {
-            return "Witty comment unavailable :(";
+            return "재치있는 문장을 적을려다가 생각나는게 없어요 :(";
         }
     }
 
@@ -246,6 +246,6 @@ public class CrashReport {
 
     public static void preload() {
         MemoryReserve.allocate();
-        (new CrashReport("Don't panic!", new Throwable())).getFriendlyReport();
+        (new CrashReport("패닉하지 마세요!", new Throwable())).getFriendlyReport();
     }
 }
